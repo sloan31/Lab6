@@ -48,7 +48,28 @@ map.addLayer({
 }
 });
 
+map.on('click', 'trails-layer', (a) => {
+  const coordinates = a.lngLat;
+    let feature = a.features[0].properties
+  const description = "<b>Trail Name:</b>" + feature.TRLNAME + "<br><b>Trail Class:</b>" + feature.TRLCLASS +"<br><b>Trail Length: </b>" + feature.Miles.toFixed(2) + "miles";
+   
 
+   
+  new mapboxgl.Popup()
+  .setLngLat(coordinates)
+  .setHTML(description)
+  .addTo(map);
+  });
+   
+  // Change the cursor to a pointer when the mouse is over the places layer.
+  map.on('mouseenter', 'trails-layer', () => {
+    map.getCanvas().style.cursor = 'pointer';
+    });
+   
+  // Change it back to a pointer when it leaves.
+  map.on('mouseleave', 'trails-layer', () => {
+    map.getCanvas().style.cursor = '';
+    });
 
 }); //closing brackets
    
