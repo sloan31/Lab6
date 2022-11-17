@@ -3,11 +3,11 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoic2xvYW5tb29yZTMxIiwiYSI6ImNsYTM1anB5NzAxMmczb
 const map = new mapboxgl.Map({
 container: 'map', // container ID
 style: 'mapbox://styles/mapbox/satellite-v9', // style URL
-center: [-103.2502, 29.2498], // starting position [lng, lat]
-zoom: 9, // starting zoom
+center: [-103.266520, 29.203280], // starting position [lng, lat]
+zoom: 11, // starting zoom
 projection: 'globe', //globe projection rather than the default web mercator
-//pitch: 85,
-//bearing: 80,
+pitch: 77,
+bearing: 90,
 });
 
 
@@ -48,6 +48,7 @@ map.addLayer({
 }
 });
 
+
 map.on('click', 'trails-layer', (a) => {
   const coordinates = a.lngLat;
     let feature = a.features[0].properties
@@ -73,3 +74,29 @@ map.on('click', 'trails-layer', (a) => {
 
 }); //closing brackets
    
+
+map.on('load', function () {
+  map.addSource('mapbox-dem', {
+      "type": "raster-dem",
+      "url": "mapbox://mapbox.mapbox-terrain-dem-v1",
+      'tileSize': 512,
+      'maxzoom': 14
+  });
+   map.setTerrain({"source": "mapbox-dem", "exaggeration": 1.5});
+
+   map.setFog({
+    'range': [-1, 2],
+    'horizon-blend': 1.9,
+    'color': 'white',
+    'high-color': '#add8e6',
+    'space-color': '#d8f2ff',
+    'star-intensity': 0.0
+});
+});
+
+const navControl = new mapboxgl.NavigationControl({
+    visualizePitch: true
+});
+map.addControl(navControl, 'top-right');
+
+

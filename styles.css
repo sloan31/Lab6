@@ -1,18 +1,43 @@
+
+
+h1 {
+text-align: center;
+font-family: Georgia, 'Times New Roman', Times, serif;
+font-size: 300%
+
+}
+
+p {
+
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 130%;
+  text-align: center
+
+}
+
+
+body {
+  background-color: bisque
+}
+
+
+
+
 #map {
 
   width: auto;
-  Height: 98vh;
+  Height: 77vh;
 
 }
 
 
 #legend {
-  background-color: #ffffff;
-  border-radius: 3px;
+  background-color: bisque;
+  border-radius: 15px;
   bottom: 30px;
   right: 18px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font: 12px/20px georgia, serif;
   padding: 10px;
   position: absolute;
   z-index: 1;
@@ -20,6 +45,7 @@
   
   #legend h4 {
   margin: 0 0 10px;
+  text-align: center
   }
   
   #legend hr {
